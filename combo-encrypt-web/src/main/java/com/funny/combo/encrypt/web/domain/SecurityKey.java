@@ -1,4 +1,4 @@
-package com.funny.combo.encrypt.web.service.config;
+package com.funny.combo.encrypt.web.domain;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Joiner;

@@ -1,11 +1,11 @@
 package com.funny.combo.encrypt.web.controller;
 
 import com.funny.combo.core.result.SingleResponse;
+import com.funny.combo.encrypt.web.config.KeyConfig;
 import com.funny.combo.encrypt.web.domain.DecryptOut;
 import com.funny.combo.encrypt.web.domain.EncryptOut;
 import com.funny.combo.encrypt.web.service.IMobileService;
-import com.funny.combo.encrypt.web.service.config.KeyConfig;
-import com.funny.combo.encrypt.web.service.config.SecurityKey;
+import com.funny.combo.encrypt.web.domain.SecurityKey;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +18,7 @@ import java.util.List;
  * 手机号加密解密接口
  */
 @Controller
-@RequestMapping(value = "/mobile")
-public class MobileController {
+public class EncryptController {
     private static final int MAX_REQUEST_MOBILE_SIZE = 1000;
 
     @Autowired(required = false)
@@ -30,27 +29,27 @@ public class MobileController {
 
     @ResponseBody
     @RequestMapping(value = "/encrypt")
-    public SingleResponse encrypt(String _appId, String consumerId, String mobiles) {
+    public SingleResponse encrypt(String _appId, String consumerId, String plainText) {
         if (StringUtils.isBlank(_appId)) {
             return SingleResponse.fail("_appId is null");
         }
-        if (StringUtils.isBlank(mobiles)) {
-            return SingleResponse.fail("mobiles is null");
+        if (StringUtils.isBlank(plainText)) {
+            return SingleResponse.fail("plainText is null");
         }
-        String[] array = mobiles.split(",");
+        String[] array = plainText.split(",");
         return encrypt(_appId, consumerId, array);
     }
 
     @ResponseBody
     @RequestMapping(value = "/encrypt", method = RequestMethod.POST)
-    public SingleResponse encrypt(@RequestParam String _appId, @RequestParam String consumerId, @RequestBody String... mobiles) {
-        SingleResponse valid = validEncryptParams(_appId, consumerId, mobiles);
+    public SingleResponse encrypt(@RequestParam String _appId, @RequestParam String consumerId, @RequestBody String... plainText) {
+        SingleResponse valid = validEncryptParams(_appId, consumerId, plainText);
         if (!valid.isSuccess()) {
             return valid;
         }
 
         SecurityKey key = keyConfig.getSecurityKey(consumerId);
-        List<EncryptOut> result = mobileService.encrypt(key, mobiles);
+        List<EncryptOut> result = mobileService.encrypt(key, plainText);
         return SingleResponse.succ(result);
     }
 
@@ -89,7 +88,7 @@ public class MobileController {
         if (!keyConfig.isExistsConsumerId(consumerId)) {
             return SingleResponse.fail("consumerId not exists");
         }
-        if (mobiles != null && mobiles.length > 0 && mobiles.length <= MAX_REQUEST_MOBILE_SIZE) {
+        if (mobiles != null && mobiles.length > 0 && mobiles.length > MAX_REQUEST_MOBILE_SIZE) {
             return SingleResponse.fail("mobiles 参数不能为空且数组长度小于：" + MAX_REQUEST_MOBILE_SIZE);
         }
         return SingleResponse.succ();

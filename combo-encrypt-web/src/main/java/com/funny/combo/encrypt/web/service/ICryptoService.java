@@ -1,7 +1,7 @@
 package com.funny.combo.encrypt.web.service;
 
 
-import com.funny.combo.encrypt.web.service.config.SecurityKey;
+import com.funny.combo.encrypt.web.domain.SecurityKey;
 
 /**
  */

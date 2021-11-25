@@ -1,8 +1,8 @@
 package com.funny.combo.encrypt.web;
 
 
-import com.funny.combo.encrypt.web.service.config.KeyConfig;
-import com.funny.combo.encrypt.web.service.config.SecurityKey;
+import com.funny.combo.encrypt.web.config.KeyConfig;
+import com.funny.combo.encrypt.web.domain.SecurityKey;
 import com.funny.combo.encrypt.web.service.impl.CryptoService;
 import org.junit.Before;
 import org.junit.Test;

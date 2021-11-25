@@ -1,8 +1,8 @@
 package com.funny.combo.encrypt.web.service.impl;
 
+import com.funny.combo.encrypt.web.config.KeyConfig;
 import com.funny.combo.encrypt.web.service.ICryptoService;
-import com.funny.combo.encrypt.web.service.config.KeyConfig;
-import com.funny.combo.encrypt.web.service.config.SecurityKey;
+import com.funny.combo.encrypt.web.domain.SecurityKey;
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
 import com.google.common.io.BaseEncoding;
@@ -10,8 +10,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * on 2016/6/12.

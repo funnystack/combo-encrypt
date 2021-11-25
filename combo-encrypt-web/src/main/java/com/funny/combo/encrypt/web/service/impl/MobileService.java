@@ -4,7 +4,7 @@ import com.funny.combo.encrypt.web.domain.DecryptOut;
 import com.funny.combo.encrypt.web.domain.EncryptOut;
 import com.funny.combo.encrypt.web.service.ICryptoService;
 import com.funny.combo.encrypt.web.service.IMobileService;
-import com.funny.combo.encrypt.web.service.config.SecurityKey;
+import com.funny.combo.encrypt.web.domain.SecurityKey;
 import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,6 @@ import java.util.List;
 @Service
 public class MobileService implements IMobileService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MobileService.class);
-//    private static final Pattern BASE64_PATTERN = Pattern.compile("^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{4}|[A-Za-z0-9+\\/]{3}=|[A-Za-z0-9+\\/]{2}==)=*$", Pattern.CASE_INSENSITIVE);
     private static final EncryptOut ENCRYPT_IS_EMPTY = new EncryptOut(102, "待加密值不能为空！");
     private static final DecryptOut DECRYPT_NOT_BASE64 = new DecryptOut(102, "", "解密字符不是base64值！");
 

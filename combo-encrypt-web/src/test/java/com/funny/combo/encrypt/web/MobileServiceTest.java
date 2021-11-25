@@ -3,7 +3,7 @@ package com.funny.combo.encrypt.web;
 import com.funny.combo.encrypt.web.domain.DecryptOut;
 import com.funny.combo.encrypt.web.domain.EncryptOut;
 import com.funny.combo.encrypt.web.service.ICryptoService;
-import com.funny.combo.encrypt.web.service.config.SecurityKey;
+import com.funny.combo.encrypt.web.domain.SecurityKey;
 import com.funny.combo.encrypt.web.service.impl.MobileService;
 import org.junit.Before;
 import org.junit.Test;
